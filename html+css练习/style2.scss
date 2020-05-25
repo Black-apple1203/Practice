@@ -1,0 +1,153 @@
+.box{width: 100px;}
+
+
+
+//单行注释不会被编译出来
+
+/*
+    多行注释，就是css的注释
+*/
+
+
+$number : 123px;
+$key : margin;
+
+.box2{
+    width: $number;
+    height: $number;
+    #{$key} : auto;
+}
+
+//sass的作用域是有顺序的
+/*.box3{
+    height: $number;
+    $number : 456px;
+    width: $number;
+}*/
+.box3{
+    $number : 456px;
+    width: $number;
+    height: $number;
+}
+
+
+ul{
+    list-style:none;
+    li{float: left;
+        div{margin: 10px;}
+        p{margin: 20px;}
+    }
+    &:hover{
+        color: red;
+        font: {
+            size: 10px;
+            weight: bold;
+            family: 宋体;
+        }
+    }
+}
+
+$num:100px;
+.box4{
+    width: $num * 3;
+    //sass中如果单位不同不同是不能进行运算的
+    // height: $num + 20em;
+    font: 20px / 1.5;
+    //默认/是分割的操作
+    padding: (20px / 1.5);
+    color: #010203 * 2;
+
+} 
+//自定义函数
+@function sum($n,$m){
+    @return $n + $m;
+}
+
+.box5{
+    width: round(3.4px);
+    height: percentage(0.2);
+    margin: random();
+    padding: sqrt(25%);
+    font-size: sum(4px , 5px);
+}
+
+
+//混入
+@mixin show {
+    display: block;
+}
+@mixin hide($color) {
+    display: none;
+    color: $color;
+}
+.box6{
+    width: 100px;
+    @include show;
+    @include hide(red);
+}
+
+//继承，分组写法
+%line{
+    display: inline;
+}
+
+.box7{
+    @extend %line;
+}
+.box8{
+    @extend %line;
+}
+
+//合并
+$background : (
+    a : url(a.png),
+    b : url(b.png)
+);
+$transform : (
+    a : scale(2),
+    b : rotate(30deg)
+);
+.box9{
+    //逗号隔开
+    background: map-values($background);
+    //空格隔开
+    transform : zip(map-values($transform)...);
+}
+
+//响应式
+.box10{
+    width: 100px;
+    @media all and (min-width : 768px){
+        width: 600px;
+    }
+    @media all and (min-width : 1440px){
+        width: 900px;
+    }
+}
+
+
+//条件
+$count : 3;
+
+.box11{
+    @if ($count > 4) {
+        width: 100px + $count;
+    }
+    @else{
+        width: 10px + $count;
+    }
+}
+
+
+//循环（用递归的思想实现）
+//sass里提供了循环语句
+//for循环为例
+@for $i from 0 through 2 {
+    .box-#{$i}{
+        width: 100px + $i;
+    }
+    
+}
+
+//引入sass文件
+@import'./47_reset.scss';

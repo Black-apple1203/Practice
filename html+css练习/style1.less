@@ -1,0 +1,164 @@
+.box{width: 100px;}
+
+
+//单行注释不会被编译出来
+
+/*
+    多行注释，就是css的注释
+*/
+
+@number : 123px;
+@key : margin; 
+@i : 2;
+
+
+.box@{i}{
+    width: @number;
+    height: @number;
+    @{key} : auto;
+}
+
+
+.box3{
+    height: @number;
+    @number : 456px;
+    width: @number;
+}
+
+
+// ul li{}
+// ul li div{}
+// ul li p{}
+
+ul{
+    list-style:none;
+    li{float: left;
+        div{margin: 10px;}
+        p{margin: 20px;}
+    }
+    &:hover{
+        color: red;
+        //less是没有这种属性嵌套的写法的只有sass有这种功能
+        // font : {
+        //     size: 10px;
+        //     weight: bold;
+        //     family: 宋体;
+        // }
+    }
+}
+
+@num : 100px;
+
+.box4{
+    width: @num * 3;
+    // height: @num + 10;
+    height: @num + 10px;
+    margin: 10em + @num;
+    font: 20px / 1.5;
+    padding: ~"20px / 1.5";
+    padding: 20px / 1.5;
+    color: #010203;
+    color: #010203 * 2; 
+}
+
+
+.box5{
+    width: round(3.4px);
+    height: percentage(0.2);
+    margin: random();
+    padding: sqrt(25%);
+}
+
+
+
+//混入
+.show{
+    display: block;
+}
+// .hide{
+//     display: none;
+// }
+.hide(@color){
+    display: none;
+    color: @color;
+}
+.box6{
+    width: 100px;
+    .show;
+    .hide(blue);
+}
+
+
+//命名空间
+#nm(){
+    .show{display: inline-block;}
+}
+.box7{
+    #nm.show;
+}
+
+
+
+//继承，分组的写法
+.line{
+    display: inline;
+}
+.box7{
+    &:extend(.line);
+}
+.box8{
+    &:extend(.line);
+}
+
+//合并
+.box9{
+    //中间用逗号
+    background+ : url(a.png);
+    background+ : url(b.png);
+    //中间用空格
+    transform+_ : scale(2);
+    transform+_ : rotate(30deg);
+}
+
+
+//响应式
+.box10{
+    width: 100px;
+    @media all and (min-width : 768px){
+        width: 600px;
+    }
+    @media all and (min-width : 1440px){
+        width: 900px;
+    }
+}
+
+
+//条件
+@count : 3;
+
+.get(@cn) when ( @cn > 4 ){
+    width: 100px + @cn;
+}
+.get(@cn) when ( @cn < 4){
+    width: 10px + @cn;
+}
+.box11{
+    .get(@count);
+}
+
+
+//循环（用递归的思想实现）
+@count2 : 0;
+.get2(@cn) when (@cn <3){
+    box-@{cn}{
+        .get2((@cn+1));
+        width: 100px + @cn;
+    }
+}
+
+.get2(@count2);
+
+
+//引入less文件
+
+@import './46_reset.less';
