@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /*
+            1、找出所有的水仙花数，三位数，各位立方和等于该数本身。
+               Math.pow(x,y); 求x的y次方
+        */
+    
+
+                    /* document.write("水仙花数为：<br/>");
+                    for(var i = 100; i < 1000; i++){
+                        //每一位取出
+                        var a = i % 10;
+                        var b = parseInt(i / 10) % 10;
+                        var c = parseInt(i / 100);
+                        //立方和
+                        var sum = Math.pow(a , 3) + Math.pow(b , 3) + Math.pow(c , 3);
+                    
+                        if (i == sum) {
+                            document.write( i +"<br/>");
+                        }
+                    }*/
+
+
+
+
+        /*
+            2、找出两个数的最大公约数。
+        */
+        var num1 = 7;
+        var num2 = 6;
+        var min = num1 > num2 ? num2 : num1;
+        while (1) {
+            //判断是否需能整除这 两个数；
+            if (num1 % min == 0 && num2 % min ==0) {
+                break;
+            }
+            min --;
+        }
+        alert("两个数的最大公约数是："+min);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

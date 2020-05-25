@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script>
+        /*
+            1、通过new去声明正则表达式
+                第一个参数：正则表达式的主体  字符串
+                第二个参数：修饰符
+                i
+                g
+                【注】修饰符没有顺序
+            2、省略new运算符去声明正则表达式
+            3、通过常亮赋值
+        */
+    // var box1 = new RegExp("hello", "ig");
+    // var box1 = RegExp("hello", "ig");
+    var box1 = /hello/gi;
+    alert(box1);///hello/gi
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /*
+            1、将字符串str = "when I was yong, I love a girl in neighbor class."中，
+               从yong 提取到 girl生成新字符串，但是不许数
+        */
+        
+        // var str = "when I was yong, I love a girl in neighbor class.";
+        // var start = str.indexOf("yong");
+        // var end = str.indexOf("girl") + "girl".length;
+        // var newStr = str.substring(start,end);
+        // alert(newStr);//yong, I love a girl
+
+
+        /*
+            2、将字符串中单词用空格隔开
+              已知传入的字符串中只有字母，每个单词的首字母大写，请将每个单词用空格隔开
+              只保留一个单词的首字母就的大写
+                传入："HelloMyWorld"
+                返回"Hello my world"
+
+
+            思路：
+                1、字符串转成数组  split("")
+                2、数组转成字符串  join("")
+        */
+         
+
+         function wordOfStr(str){
+             var arr = str.split("");
+             for (var i = 1; i < arr.length; i++){
+                 //判断
+                 if(arr[i] >= "A" && arr[i] <= "Z"){
+                     //1、将大写字母转成小写  2、插入一个空格
+                     arr[i] = arr[i].toLowerCase();
+                     arr.splice(i, 0, " ");
+                 }
+             }
+            //  alert(arr);//H,e,l,l,o,M,y,W,o,r,l,d
+            return arr.join("");
+         }
+
+         var str = wordOfStr("HelloMyWorld");
+         alert(str);//Hello my world
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

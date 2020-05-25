@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Dog(name, type, age){
+            //this = new Object();
+            //添加属性
+            this.name = name;
+            this.type = type;
+            this.age = age;
+        }
+        /*
+            通过构造函数的原型添加方法
+        */
+        Dog.prototype = {
+            run:function(){
+                alert(this.name + "会飞快的奔跑");
+            },
+            showSelf: function(){
+                alert(`这是一个${this.type}的，${this.age}岁的，叫${this.name}的小狗`);
+            }
+        }
+
+        /*
+            分类更加细分Dev构造函数。继承
+        */
+        
+        function Teddy(name, type, age, color){
+            //this = new Object();
+            //1、继承父一级构造函数所有属性
+            Dog.call(this,{
+                name: name,
+                type: type,
+                age: age ,
+               
+            })
+            //return this;
+        }
+
+        var xiaohong = new Teddy({
+            name: "小红",
+            type: "泰迪",
+            age: 10,
+            color:"棕色"
+        })
+        alert(xiaohong.name);
+        alert(xiaohong.age);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
