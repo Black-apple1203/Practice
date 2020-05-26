@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="lib/vue.js"></script>
+    <style>
+        .navbar{
+            background:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <navbar></navbar>
+    </div>
+    
+    <script type="text/javascript">
+        //全局定义组件（作用域隔离）
+        Vue.component("navbar",{
+            template:`
+            <div>
+                <button>返回</button>
+                navbar
+                <button>主页</button>
+            </div>
+            `
+        })
+
+        new Vue({
+            el:"#box",
+        })
+    </script>
+</body>
+</html>

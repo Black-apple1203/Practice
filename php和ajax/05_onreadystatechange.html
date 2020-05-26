@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var oBtn = document.getElementById("btn1");
+            oBtn.onclick = function(){
+
+                /*
+                    XMLHttpRequest  IE8以下不兼容
+                    IE8以下声明ajax的方法是
+                        ActiveXObject("Microsoft.XMLHTTP");
+                */
+
+                //1、创建ajax对象
+                // var xhr = null;
+                // if(window.XMLHttpRequest){
+                //     xhr = new XMLHttpRequest();
+                // }else{
+                //     xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                // }
+
+                var xhr = null;
+                try {
+                    xhr = new XMLHttpRequest();
+                } catch (error) {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                //2、调用open
+                /*
+                    第一个参数：请求方式 get post
+                    第二个参数：url
+                    第三个参数：是否异步
+                                true 异步
+                                false 同步
+                */
+                xhr.open("get","1.txt",true);
+
+                //3、调用send
+                xhr.send();
+
+                //4、等待数据响应
+                /*
+                    readystatechange 事件类型
+                    xhr.readyState 发生变化的时候调用
+                    0  调用open方法之前
+                    1  调用send方法之后，发送请求
+                    2  send方法完成，已经接受到所有的响应内容
+                    3  正在解析下载到的数据
+                    4  解析完成
+                    //
+                        0: 请求未初始化
+                        1: 服务器连接已建立
+                        2: 请求已接收
+                        3: 请求处理中
+                        4: 请求已完成，且响应已就绪
+                */
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4){
+                        alert(xhr.responseText);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1">下载数据</button>
+</body>
+</html>
